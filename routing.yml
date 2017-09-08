@@ -1,0 +1,39 @@
+sep_conseil_arduousness_homepage:
+    path:     /home
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:index }
+
+sep_conseil_arduousness_handling:
+    path:     /handling
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:handling}
+
+sep_conseil_arduousness_painful:
+    path:     /painful
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:painful}
+
+sep_conseil_arduousness_temperature:
+    path:     /temperature
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:temperature}
+
+sep_conseil_arduousness_hyperbaric:
+    path:     /hyperbaric
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:hyperbaric}
+
+sep_conseil_arduousness_repetitivework:
+    path:     /repetitivework
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:repetitivework}
+
+sep_conseil_arduousness_nightwork:
+    path:     /nightwork
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:nightwork}
+
+sep_conseil_arduousness_vibration:
+    path:     /vibration
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:vibration}
+
+sep_conseil_arduousness_noise:
+    path:     /noise
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:noise}
+
+sep_conseil_arduousness_addtask:
+    path:     /addtask/{id}
+    defaults: { _controller: SEPConseilArduousnessBundle:Default:addtask}

@@ -1,0 +1,33 @@
+{% extends 'TactSepBundle::base_new.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}
+    {{ '1.3 Pénibilité'|trans }}
+{% endblock %}
+
+{% from ':Form:macros.html.twig' import submenu %}
+
+{% block menu %}
+
+    {{ submenu('bilan par poste', 'tact_arduousness_resume_indexperjob') }}
+    {{ submenu('bilan par employé', 'tact_arduousness_resume_indexperemployee') }}
+    {{ submenu('horraires', 'tact_arduousness_resume_indexperemployee') }}<br/><br/><br/>
+	{{ submenu('Manutention manuelle', 'sep_conseil_arduousness_handling') }}
+	{{ submenu('Postures pénibles', 'sep_conseil_arduousness_painful') }}
+	{{ submenu('Températures extrêmes', 'sep_conseil_arduousness_temperature') }}
+	{{ submenu('Travail en milieu hyperbare', 'sep_conseil_arduousness_hyperbaric') }}
+	{{ submenu('Travail répétitif', 'sep_conseil_arduousness_repetitivework') }}
+	{{ submenu('Vibrations', 'sep_conseil_arduousness_vibration') }}
+	{{ submenu('Bruit', 'sep_conseil_arduousness_noise') }}
+	{{ submenu('Produits chimiques', 'tact_arduousness_resume_indexperjob') }}
+	{{ submenu('Travail de nuit', 'sep_conseil_arduousness_nightwork') }}
+	{{ submenu('Travail en équipe', 'tact_arduousness_resume_indexperjob') }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
