@@ -1,4 +1,0 @@
-services:
-#    sep_conseil_arduousness.example:
-#        class: SEPConseil\ArduousnessBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
