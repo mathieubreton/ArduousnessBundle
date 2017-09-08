@@ -1,0 +1,104 @@
+{% extends 'TactSepBundle::base_new.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+    	table
+		{
+		    border-collapse: collapse;
+		}
+		td, th
+		{
+		    border: 1px solid black;
+		}
+    </style>
+{% endblock %}
+
+{% block title %}
+    {{ '1.3 Pénibilité'|trans }}
+{% endblock %}
+
+{% from ':Form:macros.html.twig' import submenu %}
+
+{% block menu %}
+
+    {{ submenu('bilan par poste', 'tact_arduousness_resume_indexperjob') }}
+    {{ submenu('bilan par employé', 'tact_arduousness_resume_indexperemployee') }}
+    {{ submenu('horraires', 'tact_arduousness_resume_indexperemployee') }}<br/><br/><br/>
+	{{ submenu('Manutention manuelle', 'sep_conseil_arduousness_handling') }}
+	{{ submenu('Postures pénibles', 'sep_conseil_arduousness_painful') }}
+	{{ submenu('Températures extrêmes', 'sep_conseil_arduousness_temperature') }}
+	{{ submenu('Travail en milieu hyperbare', 'sep_conseil_arduousness_hyperbaric') }}
+	{{ submenu('Travail répétitif', 'sep_conseil_arduousness_repetitivework') }}
+	{{ submenu('Vibrations', 'sep_conseil_arduousness_vibration') }}
+	{{ submenu('Bruit', 'sep_conseil_arduousness_noise') }}
+	{{ submenu('Produits chimiques', 'tact_arduousness_resume_indexperjob') }}
+	{{ submenu('Travail de nuit', 'sep_conseil_arduousness_nightwork') }}
+	{{ submenu('Travail en équipe', 'tact_arduousness_resume_indexperjob') }}
+
+{% endblock %}
+
+{% block tactbody %}
+</br></br>
+<table>
+	<caption><b>Travail en milieu hyperbare</b></caption>
+		<tr>
+			{% for ardColumn in columns %}																			
+			{% if ardColumn.id == 1 %}
+			<th rowspan="2">{{ ardColumn.libelleColumn }}</th>
+			{% endif %}
+			{% if (ardColumn.id > 28) and (ardColumn.id < 31) %}
+			<th rowspan="2">{{ ardColumn.libelleColumn }}</th>
+			{% endif %}
+			{% endfor %}
+			{% for ardColumn in columns %}
+			{% if ardColumn.id == 6 %}
+			<th colspan="2">{{ ardColumn.libelleColumn }}</th>
+			{% endif %}
+			{% endfor %}
+			{% for ardColumn in columns %}
+			{% if ardColumn.id == 31 %}
+			<th rowspan="2">Total P ≥ 1200 hPa Nb / an</th>
+			{% endif %}
+			{% endfor %}
+		</tr>
+		<tr>
+			{% for ardColumn in columns %}
+			{% if (ardColumn.id > 8) and (ardColumn.id < 11) %}
+			<th>{{ ardColumn.libelleColumn }}</th>
+			{% endif %}
+			{% endfor %}
+		</tr>
+		{% for ardTypetask in typetasks %}
+		{% for ardTask in tasks if ardTypetask.id == 1  %}
+		<tr>
+			<td>{{ ardTask.libelleTask }}</td>                             
+			{% for ardValue in values if ardTypetask.id == 1 %}
+			{% if (ardValue.valueString is null) and (ardValue.valueFloat is null) and (ardValue.valueBoolean is null) %}
+				<td>{{ ardValue.valueInt }}</td>
+			{% else %}
+				{% if (ardValue.valueInt is null) and (ardValue.valueFloat is null) and (ardValue.valueBoolean is null) %}
+					<td>{{ ardValue.valueString }}</td>
+				{% else %}
+					{% if (ardValue.valueInt is null) and (ardValue.valueString is null) and (ardValue.valueBoolean is null) %}
+						<td>{{ ardValue.valueFloat }}</td>
+					{% else %}
+						{% if (ardValue.valueInt is null) and (ardValue.valueString is null) and (ardValue.valueFloat is null) %}
+							<td>{{ ardValue.valueBoolean }}</td>
+						{% endif %}
+					{% endif %}
+				{% endif %}
+			{% endif %}
+			{% endfor %}
+		</tr>
+		{% endfor %}
+		{% endfor %}
+</table>
+
+<a href="{{ path('sep_conseil_arduousness_addtask', {'id': 6}) }}">Ajouter une tâche</a>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
